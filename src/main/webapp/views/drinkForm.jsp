@@ -5,12 +5,13 @@
   Time: 11:31
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page
-        contentType="text/html;charset=UTF-8"
-        language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <html>
 <head>
     <title>Drink Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <style>
         .img-preview {
             max-width: 200px;
