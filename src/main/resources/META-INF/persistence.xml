@@ -29,7 +29,8 @@
             <!--
                         https://thorben-janssen.com/generate-database-schema-jpa/
             -->
-            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+<!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+            <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
 
             <property name="jakarta.persistence.sql-load-script-source" value="create.sql"/>
 
