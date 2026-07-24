@@ -33,7 +33,7 @@
                     <h5 class="card-title mb-0">${drink != null && drink.id != null ? 'Sửa đồ uống' : 'Thêm đồ uống'}</h5>
                 </div>
                 <div class="card-body">
-                    <form id="drinkForm" action="${pageContext.request.contextPath}/quan-ly/drinks/${drink != null && drink.id != null ? 'edit' : 'add'}"
+                    <form id="drinkForm" action="${pageContext.request.contextPath}/drinks/${drink != null && drink.id != null ? 'edit' : 'add'}"
                           method="post"
                           enctype="multipart/form-data">
 
@@ -86,7 +86,7 @@
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary">Lưu</button>
-                            <a href="${pageContext.request.contextPath}/quan-ly/drinks" class="btn btn-secondary">Hủy</a>
+                            <a href="${pageContext.request.contextPath}/drinks" class="btn btn-secondary">Hủy</a>
                         </div>
                     </form>
                 </div>

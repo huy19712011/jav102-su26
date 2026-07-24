@@ -17,4 +17,9 @@ public class DrinkService {
 
         return drinkRepository.getAll();
     }
+
+    public void addDrink(Drink drink) {
+
+        drinkRepository.addDrink(drink);
+    }
 }

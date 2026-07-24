@@ -16,4 +16,11 @@ public class CategoryRepository {
             return em.createQuery("select c from Category c", Category.class).getResultList();
         }
     }
+
+    public Category getCategoryById(long id) {
+
+        try (EntityManager em = EntityManagerUtils.getEntityManager()) {
+            return em.find(Category.class, id);
+        }
+    }
 }

@@ -15,4 +15,13 @@ public class DrinkRepository {
             return em.createQuery("select d from Drink d", Drink.class).getResultList();
         }
     }
+
+    public void addDrink(Drink drink) {
+
+        try (EntityManager em = EntityManagerUtils.getEntityManager()) {
+            em.getTransaction().begin();
+            em.persist(drink);
+            em.getTransaction().commit();
+        }
+    }
 }
