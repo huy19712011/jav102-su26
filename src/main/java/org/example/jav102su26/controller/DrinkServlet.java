@@ -19,7 +19,8 @@ import java.util.UUID;
 
 @WebServlet(name = "DrinkServlet", value = {
         "/drinks",
-        "/drinks/add"
+        "/drinks/add",
+        "/drinks/edit"
 })
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024,      // 1 MB
@@ -51,25 +52,11 @@ public class DrinkServlet extends HttpServlet {
             case "/drinks/add":
                 showDrinkForm(request, response);
                 break;
+            case "/drinks/edit":
+                showEditDrinkForm(request, response);
+                break;
 
         }
-    }
-
-    private void showDrinkForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        List<Category> categories = categoryService.getAll();
-
-        request.setAttribute("categories", categories);
-
-        request.getRequestDispatcher("/views/drinkForm.jsp").forward(request, response);
-    }
-
-    private void listDrinks(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        List<Drink> drinks = drinkService.getAll();
-
-        request.setAttribute("drinks", drinks);
-        request.getRequestDispatcher("/views/drinkList.jsp").forward(request, response);
     }
 
     @Override
@@ -87,11 +74,68 @@ public class DrinkServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String path = request.getServletPath();
+        System.out.println(path);
+
+        switch (path) {
+
+            case "/drinks/edit":
+                updateDrink(request, response);
+                break;
+
+        }
+    }
+
+    private void showDrinkForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        List<Category> categories = categoryService.getAll();
+
+        request.setAttribute("categories", categories);
+
+        request.getRequestDispatcher("/views/drinkForm.jsp").forward(request, response);
+    }
+
+    private void showEditDrinkForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        int drinkId = Integer.parseInt(request.getParameter("id"));
+        Drink drink = drinkService.getById(drinkId);
+        List<Category> categories = categoryService.getAll();
+
+        request.setAttribute("drink", drink);
+        request.setAttribute("categories", categories);
+
+        request.getRequestDispatcher("/views/drinkForm.jsp").forward(request, response);
+    }
+
+    private void listDrinks(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        List<Drink> drinks = drinkService.getAll();
+
+        request.setAttribute("drinks", drinks);
+        request.getRequestDispatcher("/views/drinkList.jsp").forward(request, response);
+    }
+
+
+
     private void addDrink(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Drink drink = getDrinkFromForm(request);
 
         drinkService.addDrink(drink);
+
+        response.sendRedirect(request.getContextPath() + "/drinks");
+
+    }
+
+
+    private void updateDrink(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        Drink drink = getDrinkFromForm(request);
+
+        drinkService.updateDrink(drink);
 
         response.sendRedirect(request.getContextPath() + "/drinks");
 
@@ -114,6 +158,13 @@ public class DrinkServlet extends HttpServlet {
         String idParam = request.getParameter("drinkId");
         if (idParam != null && !idParam.isBlank()) {
             drink.setId(Integer.parseInt(idParam));
+            // If no new image was uploaded, keep the existing one from the DB.
+            if (image == null) {
+                Drink existing = drinkService.getById(Integer.parseInt(idParam));
+                if (existing != null) {
+                    image = existing.getImage();
+                }
+            }
         }
         drink.setName(name);
         drink.setDescription(description);

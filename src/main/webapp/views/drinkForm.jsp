@@ -37,6 +37,9 @@
                           method="post"
                           enctype="multipart/form-data">
 
+                        <c:if test="${drink != null && drink.id != null}">
+                            <input type="hidden" name="_method" value="PUT">
+                        </c:if>
                         <input type="hidden" name="drinkId" value="${drink.id}">
 
                         <div class="mb-3">
@@ -44,7 +47,7 @@
                             <select class="form-select" id="categoryId" name="categoryId" required>
                                 <option value="">-- Chọn danh mục --</option>
                                 <c:forEach var="cat" items="${categories}">
-                                    <option value="${cat.id}" ${cat.id == drink.categoryId ? 'selected' : ''}>${cat.name}</option>
+                                    <option value="${cat.id}" ${cat.id == drink.category.id ? 'selected' : ''}>${cat.name}</option>
                                 </c:forEach>
                             </select>
                             <div class="text-danger">${errCat}</div>
@@ -75,7 +78,7 @@
 
                         <div class="mb-3">
                             <label for="price" class="form-label">Giá <strong class="text-danger">*</strong></label>
-                            <input type="number" class="form-control" id="price" name="price" value="${drink.price}" min="0">
+                            <input type="number" class="form-control" id="price" name="price" value="${drink.price}" min="0" step="0.01">
                             <div class="text-danger">${errPrice}</div>
                         </div>
 

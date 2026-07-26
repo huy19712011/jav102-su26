@@ -46,7 +46,7 @@
                             <td>${d.name}</td>
                             <td>${d.description}</td>
                             <td><img src="${pageContext.request.contextPath}/uploads/${d.image}" alt="${d.name}" class="thumb"/></td>
-                            <td><fmt:formatNumber value="${d.price}" pattern="#,##0"/></td>
+                            <td><fmt:formatNumber value="${d.price}" pattern="#,##0.00"/></td>
                             <td>
                                 <c:choose>
                                     <c:when test="${d.active}"><span class="badge bg-success">Đang bán</span></c:when>
@@ -54,8 +54,8 @@
                                 </c:choose>
                             </td>
                             <td>
-                                <a href="${pageContext.request.contextPath}/quan-ly/drinks/edit?id=${d.id}" class="btn btn-sm btn-warning">Sửa</a>
-                                <form method="post" action="${pageContext.request.contextPath}/quan-ly/drinks/delete" style="display:inline">
+                                <a href="${pageContext.request.contextPath}/drinks/edit?id=${d.id}" class="btn btn-sm btn-warning">Sửa</a>
+                                <form method="post" action="${pageContext.request.contextPath}/drinks/delete" style="display:inline">
                                     <input type="hidden" name="drinkId" value="${d.id}">
                                     <c:choose>
                                         <c:when test="${d.active}">

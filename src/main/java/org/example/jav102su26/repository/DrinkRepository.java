@@ -16,11 +16,28 @@ public class DrinkRepository {
         }
     }
 
+    public Drink getById(int id) {
+
+        try (EntityManager em = EntityManagerUtils.getEntityManager()) {
+
+            return em.find(Drink.class, id);
+        }
+    }
+
     public void addDrink(Drink drink) {
 
         try (EntityManager em = EntityManagerUtils.getEntityManager()) {
             em.getTransaction().begin();
             em.persist(drink);
+            em.getTransaction().commit();
+        }
+    }
+
+    public void updateDrink(Drink drink) {
+
+        try (EntityManager em = EntityManagerUtils.getEntityManager()) {
+            em.getTransaction().begin();
+            em.merge(drink);
             em.getTransaction().commit();
         }
     }

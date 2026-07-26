@@ -18,8 +18,18 @@ public class DrinkService {
         return drinkRepository.getAll();
     }
 
+    public Drink getById(int id) {
+
+        return drinkRepository.getById(id);
+    }
+
     public void addDrink(Drink drink) {
 
         drinkRepository.addDrink(drink);
+    }
+
+    public void updateDrink(Drink drink) {
+
+        drinkRepository.updateDrink(drink);
     }
 }
