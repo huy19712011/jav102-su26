@@ -41,4 +41,17 @@ public class DrinkRepository {
             em.getTransaction().commit();
         }
     }
+
+    public void deleteDrink(int id) {
+
+        try (EntityManager em = EntityManagerUtils.getEntityManager()) {
+            em.getTransaction().begin();
+            Drink drink = em.find(Drink.class, id);
+            if (drink != null) {
+                drink.setActive(!drink.isActive());
+                em.merge(drink);
+            }
+            em.getTransaction().commit();
+        }
+    }
 }

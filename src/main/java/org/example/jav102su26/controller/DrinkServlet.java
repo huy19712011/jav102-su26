@@ -20,7 +20,8 @@ import java.util.UUID;
 @WebServlet(name = "DrinkServlet", value = {
         "/drinks",
         "/drinks/add",
-        "/drinks/edit"
+        "/drinks/edit",
+        "/drinks/delete"
 })
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024,      // 1 MB
@@ -70,6 +71,9 @@ public class DrinkServlet extends HttpServlet {
             case "/drinks/add":
                 addDrink(request, response);
                 break;
+            //case "/drinks/delete":
+            //    deleteDrink(request, response);
+            //    break;
 
         }
     }
@@ -84,6 +88,21 @@ public class DrinkServlet extends HttpServlet {
 
             case "/drinks/edit":
                 updateDrink(request, response);
+                break;
+
+        }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String path = request.getServletPath();
+        System.out.println(path);
+
+        switch (path) {
+
+            case "/drinks/delete":
+                deleteDrink(request, response);
                 break;
 
         }
@@ -139,6 +158,15 @@ public class DrinkServlet extends HttpServlet {
 
         response.sendRedirect(request.getContextPath() + "/drinks");
 
+    }
+
+    private void deleteDrink(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        int drinkId = Integer.parseInt(request.getParameter("drinkId"));
+
+        drinkService.deleteDrink(drinkId);
+
+        response.sendRedirect(request.getContextPath() + "/drinks");
     }
 
     private Drink getDrinkFromForm(HttpServletRequest request) throws ServletException, IOException {

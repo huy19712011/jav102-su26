@@ -32,4 +32,9 @@ public class DrinkService {
 
         drinkRepository.updateDrink(drink);
     }
+
+    public void deleteDrink(int id) {
+
+        drinkRepository.deleteDrink(id);
+    }
 }

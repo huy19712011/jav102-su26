@@ -38,6 +38,7 @@
                           enctype="multipart/form-data">
 
                         <c:if test="${drink != null && drink.id != null}">
+                            <%-- Optional!!! if not PUT here => call doPost method in servlet!--%>
                             <input type="hidden" name="_method" value="PUT">
                         </c:if>
                         <input type="hidden" name="drinkId" value="${drink.id}">

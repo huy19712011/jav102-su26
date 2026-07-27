@@ -56,6 +56,8 @@
                             <td>
                                 <a href="${pageContext.request.contextPath}/drinks/edit?id=${d.id}" class="btn btn-sm btn-warning">Sửa</a>
                                 <form method="post" action="${pageContext.request.contextPath}/drinks/delete" style="display:inline">
+                                    <%-- Optional!!! if not DELETE here => call doPost method in servlet!--%>
+                                    <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="drinkId" value="${d.id}">
                                     <c:choose>
                                         <c:when test="${d.active}">
