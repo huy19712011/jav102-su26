@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="jakarta.tags.core" prefix="c" %>
-<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <html>
 <head>
     <title>Drinks</title>
@@ -17,7 +16,7 @@
     </style>
 </head>
 <body>
-<%--<jsp:include page="/views/navbar.jsp" />--%>
+<jsp:include page="/views/navbar.jsp" />
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h3 class="mb-0">Danh sách đồ uống</h3>

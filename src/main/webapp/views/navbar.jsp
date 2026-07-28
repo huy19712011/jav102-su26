@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <div class="container">
 	<header>
 		<h1>
 			<img alt="" src="${pageContext.request.contextPath}/images/logo.png" width="150">
 		</h1>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
 		<hr>
 	</header>
 
@@ -23,7 +25,7 @@
 					<li class="nav-item">
 						<a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/trang-chu">Trang chủ</a>
 					</li>
-					<c:if test="${sessionScope.user != null}">
+<%--					<c:if test="${sessionScope.user != null}">--%>
 						<li class="nav-item">
 							<a class="nav-link" href="${pageContext.request.contextPath}/employee/pos">Phiếu bán hàng</a>
 						</li>
@@ -36,26 +38,26 @@
 						<li class="nav-item">
 							<a class="nav-link" href="${pageContext.request.contextPath}/bills">Quản lý hóa đơn</a>
 						</li>
-						<c:if test="${sessionScope.user.role}">
+<%--						<c:if test="${sessionScope.user.role}">--%>
 							<li class="nav-item">
 								<a class="nav-link" href="${pageContext.request.contextPath}/quan-ly/staff">Quản lý nhân viên</a>
 							</li>
-						</c:if>
-					</c:if>
+<%--						</c:if>--%>
+<%--					</c:if>--%>
 					<li class="nav-item dropdown">
 						<a	class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ${sessionScope.user!= null? sessionScope.user.fullName :"Tài Khoản"} </a>
 						<ul class="dropdown-menu">
-							<c:if test="${sessionScope.user== null}">
+<%--							<c:if test="${sessionScope.user== null}">--%>
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/dang-nhap">Đăng nhập</a></li>
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/quen-mat-khau">Quên mật khẩu</a></li>
-							</c:if>
+<%--							</c:if>--%>
 
-							<c:if test="${sessionScope.user!= null}">
+<%--							<c:if test="${sessionScope.user!= null}">--%>
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/edit-profile">Thông tin cá nhân</a></li>
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/change-pass">Đổi mật khẩu</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Đăng xuất</a></li>
-							</c:if>
+<%--							</c:if>--%>
 						</ul>
 					</li>
 
