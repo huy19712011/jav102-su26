@@ -30,6 +30,15 @@
             <artifactId>hibernate-core</artifactId>
             <version>6.4.5.Final</version>
         </dependency>
+
+        <!-- New Version: enables Hibernate to auto-detect @Entity classes without listing them in persistence.xml -->
+<!--
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-scan-jandex</artifactId>
+            <version>7.4.5.Final</version>
+        </dependency>
+-->
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
